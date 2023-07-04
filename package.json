@@ -1,0 +1,19 @@
+{
+  "name": "free-realms-unpacker-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node index.js",
+    "build": "rimraf dist && rimraf input && rimraf output && rimraf assets && nexe ./index.js -o dist/Unpacker -t x64-10.16.0 && npm run setup",
+    "setup": "mkdirp ./dist/input"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "mkdirp": "^3.0.1",
+    "rimraf": "^5.0.1"
+  }
+}

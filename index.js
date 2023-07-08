@@ -108,10 +108,14 @@ class PackFile {
           fs.closeSync(inputFile);
           fs.closeSync(outputFileDescriptor);
           console.log(`Unpacked ${filename}`);
-          if (filename.endsWith('.gck2')) {
-            fs.renameSync(outputFile, path.join(assetDirectory, filename));
-            console.log(`Moved ${filename} to assets folder`);
+          // Split out every extension into a sub folder
+          const extension = path.extname(filename);
+          const extensionDirectory = path.join(assetDirectory, extension);
+          if (!fs.existsSync(extensionDirectory)) {
+            fs.mkdirSync(extensionDirectory);
           }
+          const extensionOutputFile = path.join(extensionDirectory, filename);
+          fs.copyFileSync(outputFile, extensionOutputFile);
         }
     }
 }
